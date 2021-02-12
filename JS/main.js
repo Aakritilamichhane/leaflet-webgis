@@ -1,12 +1,14 @@
 var map = L.map('map').setView([28.3949, 84.1240], 2);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var osm=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+});
 
-var mymarker=L.marker([28.3949, 84.1240]).addTo(map)
-    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    .openPopup();
+
+var pokhara=L.marker([28.20144, 84.9946]).bindPopup('City of Lakes').openPopup().addTo(map);
+var ktm=L.marker([27.6981,85.3592]).bindPopup('Kathmandu').openPopup().addTo(map);
+var lumbini=L.marker([27.6792,83.5070]).bindPopup('Birthplace of Lord Buddha').openPopup().addTo(map);
+    
 
     var latlngs = [
         [45.51, -122.68],
@@ -69,8 +71,9 @@ var mymarker=L.marker([28.3949, 84.1240]).addTo(map)
     }
   };
   
-  // User Location Button
-  L.easyButton('fa-crosshairs fa-lg', function(){
-      userLocation();
-  },'Get Your Location').addTo(map);
+  var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+Esri_WorldImagery.addTo(map);
+osm.addTo(map);
    
