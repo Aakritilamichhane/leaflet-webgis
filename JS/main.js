@@ -1,8 +1,8 @@
 var map = L.map('map',).setView([28.3949, 84.1240], 7.2);
 
-var pokhara=L.marker([28.20144, 84.9946]).bindPopup('City of Lakes').openPopup().addTo(map);
-var ktm=L.marker([27.6981,85.3592]).bindPopup('Kathmandu').openPopup().addTo(map);
-var lumbini=L.marker([27.6792,83.5070]).bindPopup('Birthplace of Lord Buddha').openPopup().addTo(map);
+var pokhara=L.marker([28.1575, 84.04541]).bindPopup('City of Lakes').openPopup().addTo(map);
+var ktm=L.marker([27.6981,85.3592]).bindPopup('Capital City of Nepal').openPopup().addTo(map);
+var lumbini=L.marker([27.6792,83.5070]).bindPopup('Birthplace of Lord Bu)ddha').openPopup().addTo(map);
     
 
     var latlngs = [
@@ -93,10 +93,18 @@ var baseLayers = {
     "googleStreets":googleStreets
 };
 
-// var overlays = {
-//     "Marker": marker,
-//     "Roads": roadsLayer
-// };
+var overlays = {
+    "first Marker": pokhara,
+    "second Marker":ktm,
+    "third Marker":lumbini
+}
 
-L.control.layers(baseLayers).addTo(map);
+L.control.layers(baseLayers,overlays).addTo(map);
 osm.addTo(map);
+L.geoJSON(pointJSON).addTo(map);
+L.geoJSON(lineJSON).addTo(map);
+L.geoJSON(polygonJSON,{
+    onEachFeatures:function(feature,layer){
+        layer.bindPopup(feature.properties.name);
+    }
+}).addTo(map);
